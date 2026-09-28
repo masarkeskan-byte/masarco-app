@@ -170,7 +170,6 @@
                             شرح الشرائح
                         </button>
                     </div>
-                    <!-- التعديل هنا: إضافة value فاضي، و autocomplete="off" لمنع الكاش -->
                     <input type="number" id="income" value="" autocomplete="off" placeholder="أدخل الدخل الشهري هنا..." min="0" step="100" class="w-full border border-gray-300 rounded-xl p-3.5 text-base font-bold text-gray-800 focus:ring-2 focus:ring-[#0f2e5a] outline-none transition bg-white text-right" dir="rtl">
                 </div>
             </div>
@@ -275,7 +274,6 @@
     </div>
 
     <script>
-        // التعديل السحري: إجبار المتصفح على تفريغ خانة الدخل عند أي إعادة تحميل لمنع الكاش
         document.addEventListener("DOMContentLoaded", () => {
             const incomeInput = document.getElementById("income");
             if (incomeInput) {
@@ -367,7 +365,7 @@
             if (income < minIncome) reason = "أقل من الحد الأدنى المسموح به";
             else if (income > maxIncome) reason = "يتخطى الحد الأقصى المسموح به";
 
-            const msg = `أهلاً شركة مسارك إلي الإسكان، أرغب في التقديم وهذه بياناتي:
+            const msg = `أهلاً شركة مسارك للاستشارات العقارية، أرغب في التقديم وهذه بياناتي:
 - النظام المطلوب: ${modeText}
 - محافظة محل الإقامة: ${gov}
 - إجمالي الدخل الشهري: ${formatNumber(income)} ج.م (تنبيه: الدخل ${reason})
@@ -377,13 +375,16 @@
             return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
         }
 
+        // ================= التعديل هنا: رسالة الواتساب للعميل المؤهل =================
         function getEligibleWhatsAppLink(projectName, govName, bracket, status, income) {
             const modeText = currentMode === 'immediate' ? 'الاستلام الفوري' : 'استلام خلال 36 شهر';
-            const msg = `أهلاً شركة مسارك إلي الإسكان، أرغب في التقديم وهذه بياناتي:
+            const msg = `أهلاً شركة مسارك للاستشارات العقارية، أرغب في التقديم وهذه بياناتي:
 - النظام المطلوب: ${modeText} (${projectName} - شريحة ${bracket})
 - محافظة محل الإقامة: ${govName}
 - إجمالي الدخل الشهري: ${formatNumber(income)} ج.م
-- الحالة الاجتماعية: ${status}`;
+- الحالة الاجتماعية: ${status}
+
+برجاء إرسال صور ولوكيشن المشروع للبدء في تجهيز أوراقي معكم.`;
             return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
         }
 
@@ -538,6 +539,7 @@
             return "";
         }
 
+        // ================= التعديل هنا: زرار الواتساب في كروت النتيجة =================
         function renderImmediateCards(filtered, bracket, status, income, container) {
             filtered.forEach(item => {
                 const totalCells = item["Total cells"] || "-";
@@ -583,8 +585,9 @@
                         </div>
                     </div>
                     <div class="p-5 border-t border-gray-100 bg-white">
-                        <a href="${waLink}" target="_blank" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl flex justify-center items-center gap-2 transition shadow-md">
-                            تواصل معنا لتجهيز أوراق التقديم
+                        <a href="${waLink}" target="_blank" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 md:py-4 rounded-xl flex justify-center items-center gap-2 transition shadow-md text-sm md:text-base px-2">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.011l-3.324.871.888-3.24A9.953 9.953 0 0 1 2.052 12C2.052 6.486 6.539 2 12.052 2s10 4.486 10 10-4.486 10-9.969 10a9.96 9.96 0 0 1-4.992-1.332l4.94.343z" fill-opacity=".08"/><path d="M21.052 12c0 4.962-4.038 9-9 9a8.96 8.96 0 0 1-4.521-1.222l-.323-.192-3.364.881.895-3.277-.211-.336A8.963 8.963 0 0 1 3.052 12c0-4.962 4.038-9 9-9s9 4.038 9 9zm-9-10.5C5.71 1.5 1.552 5.657 1.552 10.8c0 1.986.623 3.864 1.764 5.433l-1.26 4.615 4.72-1.238A10.457 10.457 0 0 0 12.052 22.5c5.342 0 9.5-4.157 9.5-9.3S17.394 1.5 12.052 1.5zm5.02 12.72c-.274-.138-1.63-.805-1.883-.897-.253-.092-.437-.138-.62.138-.184.276-.713.897-.873 1.08-.16.184-.322.207-.597.069-.276-.138-1.163-.429-2.215-1.371-.818-.733-1.37-1.638-1.53-1.914-.161-.276-.017-.425.12-.563.125-.125.276-.322.414-.483.138-.161.184-.276.276-.46.092-.184.046-.345-.023-.483-.069-.138-.62-1.494-.85-2.046-.224-.538-.452-.464-.62-.473-.16-.008-.344-.011-.528-.011-.184 0-.483.069-.735.345-.253.276-.965.943-.965 2.299s.988 2.667 1.126 2.851c.138.184 1.942 2.966 4.708 4.127.658.277 1.171.442 1.572.566.661.21 1.262.18 1.735.109.528-.079 1.63-.667 1.86-1.311.23-.644.23-1.196.16-1.311-.069-.115-.253-.184-.528-.322z"/></svg>
+                            تواصل لاستلام الصور واللوكيشن وتجهيز ورقك
                         </a>
                     </div>
                 </div>`;
@@ -633,8 +636,9 @@
                         </div>
                     </div>
                     <div class="p-5 border-t border-gray-100 bg-white">
-                        <a href="${waLink}" target="_blank" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl flex justify-center items-center gap-2 transition shadow-md">
-                            تواصل معنا لتجهيز أوراق التقديم
+                        <a href="${waLink}" target="_blank" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 md:py-4 rounded-xl flex justify-center items-center gap-2 transition shadow-md text-sm md:text-base px-2">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.011l-3.324.871.888-3.24A9.953 9.953 0 0 1 2.052 12C2.052 6.486 6.539 2 12.052 2s10 4.486 10 10-4.486 10-9.969 10a9.96 9.96 0 0 1-4.992-1.332l4.94.343z" fill-opacity=".08"/><path d="M21.052 12c0 4.962-4.038 9-9 9a8.96 8.96 0 0 1-4.521-1.222l-.323-.192-3.364.881.895-3.277-.211-.336A8.963 8.963 0 0 1 3.052 12c0-4.962 4.038-9 9-9s9 4.038 9 9zm-9-10.5C5.71 1.5 1.552 5.657 1.552 10.8c0 1.986.623 3.864 1.764 5.433l-1.26 4.615 4.72-1.238A10.457 10.457 0 0 0 12.052 22.5c5.342 0 9.5-4.157 9.5-9.3S17.394 1.5 12.052 1.5zm5.02 12.72c-.274-.138-1.63-.805-1.883-.897-.253-.092-.437-.138-.62.138-.184.276-.713.897-.873 1.08-.16.184-.322.207-.597.069-.276-.138-1.163-.429-2.215-1.371-.818-.733-1.37-1.638-1.53-1.914-.161-.276-.017-.425.12-.563.125-.125.276-.322.414-.483.138-.161.184-.276.276-.46.092-.184.046-.345-.023-.483-.069-.138-.62-1.494-.85-2.046-.224-.538-.452-.464-.62-.473-.16-.008-.344-.011-.528-.011-.184 0-.483.069-.735.345-.253.276-.965.943-.965 2.299s.988 2.667 1.126 2.851c.138.184 1.942 2.966 4.708 4.127.658.277 1.171.442 1.572.566.661.21 1.262.18 1.735.109.528-.079 1.63-.667 1.86-1.311.23-.644.23-1.196.16-1.311-.069-.115-.253-.184-.528-.322z"/></svg>
+                            تواصل لاستلام الصور واللوكيشن وتجهيز ورقك
                         </a>
                     </div>
                 </div>`;
