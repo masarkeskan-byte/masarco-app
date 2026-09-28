@@ -13,7 +13,6 @@
             from { opacity: 0; transform: translateY(20px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
-        /* ألوان مسارك إلي الإسكان */
         .brand-blue { color: #0f2e5a; }
         .bg-brand-blue { background-color: #0f2e5a; }
         .border-brand-blue { border-color: #0f2e5a; }
@@ -23,14 +22,58 @@
         .border-brand-orange { border-color: #f58220; }
     </style>
 </head>
-<body class="text-gray-800 pb-10 flex flex-col min-h-screen">
+<body class="text-gray-800 pb-10 flex flex-col min-h-screen relative">
 
+    <!-- ================= شاشة الشروط الافتتاحية (Gateway) ================= -->
+    <div id="terms-gateway" class="fixed inset-0 bg-[#f8fafc] z-50 flex flex-col items-center pt-6 pb-12 px-4 overflow-y-auto">
+        <div class="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-6 md:p-10 border-t-8 border-brand-orange mt-2 md:mt-6">
+            <div class="flex justify-center items-center mb-6 select-none">
+                <div class="text-3xl md:text-4xl font-black tracking-tight flex items-center gap-3">
+                    <svg class="w-8 h-8 md:w-10 md:h-10 brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    <span class="brand-blue">مسارك</span>
+                    <span class="brand-orange">إلي الإسكان</span>
+                </div>
+            </div>
+            <div class="text-center mb-8 border-b border-gray-100 pb-6">
+                <h2 class="text-2xl md:text-3xl font-black brand-blue mb-2">شروط التقديم في الإيجار المنتهي بالتملك</h2>
+                <h3 class="text-lg md:text-xl font-bold text-gray-500 mb-4">هيئة المجتمعات العمرانية الجديدة</h3>
+                <p class="text-brand-orange font-bold text-base md:text-lg bg-orange-50 py-2 px-4 rounded-xl inline-block border border-orange-100">
+                    للتأكد من مطابقتك لشروط المبادرة، علم (صح) قدام الشروط اللي بتنطبق عليك:
+                </p>
+            </div>
+            <div class="space-y-4 mb-8">
+                <label class="flex items-center gap-4 p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-[#f58220] transition-all duration-300 bg-gray-50 hover:bg-white shadow-sm">
+                    <input type="checkbox" class="term-check w-7 h-7 accent-[#f58220] cursor-pointer flex-shrink-0">
+                    <span class="text-gray-800 font-bold text-base md:text-lg leading-relaxed">مصري الجنسية، وسنك وقت التقديم من 21 لـ 45 سنة.</span>
+                </label>
+                <label class="flex items-center gap-4 p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-[#f58220] transition-all duration-300 bg-gray-50 hover:bg-white shadow-sm">
+                    <input type="checkbox" class="term-check w-7 h-7 accent-[#f58220] cursor-pointer flex-shrink-0">
+                    <span class="text-gray-800 font-bold text-base md:text-lg leading-relaxed">أنت أو أسرتك (الزوج/الزوجة/الأولاد القصر) متملكتوش شقة أو أرض من الإسكان قبل كده.</span>
+                </label>
+                <label class="flex items-center gap-4 p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-[#f58220] transition-all duration-300 bg-gray-50 hover:bg-white shadow-sm">
+                    <input type="checkbox" class="term-check w-7 h-7 accent-[#f58220] cursor-pointer flex-shrink-0">
+                    <span class="text-gray-800 font-bold text-base md:text-lg leading-relaxed">هتقدم في مشاريع المحافظة المكتوبة في بطاقتك (أو المدن المتاحة ليها في الطرح).</span>
+                </label>
+                <label class="flex items-center gap-4 p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-[#f58220] transition-all duration-300 bg-gray-50 hover:bg-white shadow-sm">
+                    <input type="checkbox" class="term-check w-7 h-7 accent-[#f58220] cursor-pointer flex-shrink-0">
+                    <span class="text-gray-800 font-bold text-base md:text-lg leading-relaxed">دخلك الشهري مناسب للشريحة اللي هتقدم فيها (ودي هنوضحهالك بالتفصيل جوه الأبلكيشن).</span>
+                </label>
+                <label class="flex items-center gap-4 p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-[#f58220] transition-all duration-300 bg-gray-50 hover:bg-white shadow-sm">
+                    <input type="checkbox" class="term-check w-7 h-7 accent-[#f58220] cursor-pointer flex-shrink-0">
+                    <span class="text-gray-800 font-bold text-base md:text-lg leading-relaxed">الشقة دي مخصصة لسكنك أنت وأسرتك بس، ومينفعش تأجرها لحد تاني.</span>
+                </label>
+            </div>
+            <button id="start-btn" disabled class="w-full bg-gray-200 text-gray-500 font-black py-4 rounded-xl text-xl cursor-not-allowed transition-all duration-300">
+                علم (صح) على كل الشروط عشان تبدأ
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= واجهة الأبلكيشن الأساسية ================= -->
     <div class="max-w-5xl mx-auto mt-6 md:mt-10 p-4 md:p-8 bg-white md:rounded-3xl shadow-xl relative overflow-hidden w-full flex-grow border-t-8 border-brand-orange">
-        
-        <!-- ================= ترويسة اللوجو النصي ================= -->
         <div class="text-center mb-6 border-b border-gray-100 pb-6">
-            
-            <!-- اللوجو النصي المدمج مع أيقونة هندسية -->
             <div class="flex justify-center items-center mb-4 select-none">
                 <div class="text-4xl md:text-5xl font-black tracking-tight flex items-center gap-3">
                     <svg class="w-10 h-10 md:w-12 md:h-12 brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -40,17 +83,14 @@
                     <span class="brand-orange">إلي الإسكان</span>
                 </div>
             </div>
-            
             <h1 class="text-xl md:text-2xl font-black text-gray-700 mt-5 leading-tight">
                 دليلك لشقق الإيجار المنتهي بالتملك
                 <span class="block text-gray-500 text-lg md:text-xl mt-2 font-bold">أو طرح هيئة المجتمعات العمرانية</span>
             </h1>
         </div>
 
-        <!-- ================= الشاشة الرئيسية (اختيار النظام) ================= -->
         <div id="landingPage" class="fade-in flex flex-col items-center justify-center pt-6 pb-10">
             <p class="text-gray-500 font-medium text-lg text-center mb-8">حدد نوع المشروع الذي تبحث عنه للبدء</p>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl px-2">
                 <button onclick="selectMode('immediate')" class="group bg-white border-2 border-gray-100 hover:border-[#0f2e5a] rounded-3xl p-8 text-center transition-all duration-300 shadow-sm hover:shadow-xl transform hover:-translate-y-2">
                     <div class="bg-gray-50 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 group-hover:bg-[#0f2e5a] transition-colors">
@@ -59,7 +99,6 @@
                     <h2 class="text-2xl font-black brand-blue mb-3">الاستلام الفوري</h2>
                     <p class="text-gray-500 font-medium leading-relaxed text-sm">شقق جاهزة للتسليم المباشر بأنظمة إيجار وتأمين تناسب مختلف الشرائح.</p>
                 </button>
-
                 <button onclick="selectMode('future')" class="group bg-white border-2 border-gray-100 hover:border-[#f58220] rounded-3xl p-8 text-center transition-all duration-300 shadow-sm hover:shadow-xl transform hover:-translate-y-2">
                     <div class="bg-gray-50 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 group-hover:bg-[#f58220] transition-colors">
                         <span class="text-4xl group-hover:text-white">🏗️</span>
@@ -70,9 +109,8 @@
             </div>
         </div>
 
-        <!-- ================= شاشة التطبيق ================= -->
         <div id="appPage" class="hidden pb-6">
-            <div class="flex flex-col-reverse md:flex-row justify-between items-center mb-8 border-b pb-6 border-gray-100 gap-4 mt-4">
+            <div class="flex flex-col-reverse md:flex-row justify-between items-center mb-6 border-b pb-6 border-gray-100 gap-4 mt-4">
                 <button onclick="goBack()" class="flex items-center gap-2 text-gray-500 hover:text-red-600 font-bold bg-gray-50 hover:bg-red-50 px-5 py-2.5 rounded-xl transition w-full md:w-auto justify-center">
                     <span>رجوع للرئيسية</span>
                 </button>
@@ -81,7 +119,11 @@
                 </div>
             </div>
 
-            <!-- فورم البيانات -->
+            <!-- Hint الخاص بنظام الـ 36 شهر -->
+            <div id="future-hint" class="hidden bg-orange-50 border border-orange-200 text-brand-orange text-sm md:text-base font-bold p-3 rounded-xl mb-6 text-center shadow-sm">
+                ⚠️ تنبيه: نظام الاستلام خلال 36 شهر متاح فقط لأصحاب الشريحة الثانية والثالثة.
+            </div>
+
             <div id="formContainer" class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8 p-6 rounded-2xl border shadow-sm bg-gray-50 border-gray-200">
                 <div>
                     <label class="block text-sm font-bold brand-blue mb-2">اختر محافظة إقامتك:</label>
@@ -112,27 +154,28 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-bold brand-blue mb-2">إجمالي الدخل الشهري (بالجنيه):</label>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block text-sm font-bold brand-blue">الدخل الشهري (بالجنيه):</label>
+                        <button type="button" onclick="openBracketModal()" class="text-brand-orange hover:text-white bg-orange-50 hover:bg-[#f58220] border border-orange-200 text-xs font-bold flex items-center gap-1 px-2.5 py-1 rounded-lg transition-colors shadow-sm">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            شرح الشرائح
+                        </button>
+                    </div>
                     <input type="number" id="income" value="5000" min="0" step="500" class="w-full border border-gray-300 rounded-xl p-3.5 text-base font-bold text-gray-800 focus:ring-2 focus:ring-[#0f2e5a] outline-none transition bg-white text-right" dir="ltr">
                 </div>
             </div>
 
-            <!-- زر البحث -->
             <button id="searchBtn" onclick="searchUnits()" class="w-full bg-brand-blue hover:bg-[#0a1f3d] text-white font-black text-xl py-4 px-4 rounded-xl transition-all duration-300 shadow-lg transform active:scale-95 flex justify-center items-center gap-2 mb-8">
                 ابحث عن الوحدات المتاحة
             </button>
 
-            <!-- منطقة عرض النتائج -->
             <div id="resultArea" class="hidden">
                 <div id="alertBox" class="p-5 rounded-xl mb-6 font-bold text-lg md:text-xl text-center border"></div>
-                <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                </div>
+                <div id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </div>
         </div>
-
     </div>
 
-    <!-- ================= شريط حقوق النشر والروابط الرسمية ================= -->
     <footer class="mt-8 border-t border-gray-200 pt-8 pb-6 text-center max-w-5xl mx-auto w-full px-4">
         <div class="flex justify-center gap-5 mb-5">
             <a href="https://www.facebook.com/share/1CWZdG852w/" target="_blank" class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 hover:bg-blue-700 hover:text-white transition shadow-sm">
@@ -148,7 +191,129 @@
         <p class="text-sm text-gray-500 font-bold">جميع الحقوق محفوظة © لشركة مسارك إلي الإسكان للاستشارات العقارية 2026</p>
     </footer>
 
+    <!-- ================= نافذة شرح الشرائح (Modal) ================= -->
+    <div id="bracket-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[60] hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full overflow-hidden transform scale-95 transition-transform">
+            <div class="bg-[#0f2e5a] p-4 flex justify-between items-center">
+                <h3 class="text-white font-black text-xl">💡 الدليل المبسط لشرائح الدخل</h3>
+                <button onclick="closeBracketModal()" class="text-white hover:text-brand-orange font-bold text-3xl leading-none">&times;</button>
+            </div>
+            <div class="p-6 overflow-x-auto">
+                <p class="text-gray-600 font-bold mb-4 text-sm md:text-base">وزارة الإسكان بتقسم المتقدمين لـ 3 شرائح بناءً على الحالة الاجتماعية والدخل الشهري، لتحديد نوع المشاريع المناسبة:</p>
+                <table class="w-full border-collapse border border-gray-200 text-center text-sm md:text-base mb-2">
+                    <thead>
+                        <tr class="bg-orange-100 brand-blue font-black">
+                            <th class="border border-gray-200 p-2 md:p-3" rowspan="2">الشريحة</th>
+                            <th class="border border-gray-200 p-2 md:p-3" rowspan="2">إجمالي قيمة الوحدة</th>
+                            <th class="border border-gray-200 p-2 md:p-3" colspan="2">الدخل الشهري للأعزب</th>
+                            <th class="border border-gray-200 p-2 md:p-3" colspan="2">الدخل الشهري للأسرة</th>
+                        </tr>
+                        <tr class="bg-orange-50 brand-blue font-bold">
+                            <th class="border border-gray-200 p-2">الحد الأدنى</th>
+                            <th class="border border-gray-200 p-2">الحد الأقصى</th>
+                            <th class="border border-gray-200 p-2">الحد الأدنى</th>
+                            <th class="border border-gray-200 p-2">الحد الأقصى</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="row-bracket-1" class="hover:bg-gray-50 transition-colors">
+                            <td class="border border-gray-200 p-2 font-black text-lg">1</td>
+                            <td class="border border-gray-200 p-2 font-bold">أقل من مليون جنية</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">5,000</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">12,000</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">5,000</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">16,000</td>
+                        </tr>
+                        <tr class="bg-blue-50 hover:bg-blue-100">
+                            <td class="border border-gray-200 p-2 font-black text-lg">2</td>
+                            <td class="border border-gray-200 p-2 font-bold">من مليون جنية حتى أقل من 2 مليون</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">12,001</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">21,000</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">16,001</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">28,000</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="border border-gray-200 p-2 font-black text-lg">3</td>
+                            <td class="border border-gray-200 p-2 font-bold">من 2 مليون جنية فأكثر</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">21,001</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">33,000</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">28,001</td>
+                            <td class="border border-gray-200 p-2 font-medium text-gray-700">44,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- رسالة التحذير في المودال لنظام 36 شهر -->
+                <div id="modal-future-warning" class="hidden mt-3 p-3 bg-red-50 text-red-700 rounded-lg text-sm font-bold text-center border border-red-200">
+                    ⚠️ تنبيه: الشريحة الأولى غير مدعومة في نظام الاستلام خلال 36 شهر.
+                </div>
+
+                <div class="mt-4 p-3 bg-gray-100 rounded-lg text-sm text-gray-600 font-bold text-center border border-gray-200">
+                    * لا تقلق، نظام "مسارك" سيقوم بحساب شريحتك تلقائياً لضمان دقة النتائج.
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 border-t border-gray-100 text-center">
+                <button onclick="closeBracketModal()" class="bg-brand-blue text-white font-bold py-2 px-8 rounded-xl hover:bg-[#0a1f3d] transition">فهمت، شكراً</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // ================= منطق شاشة الشروط (Gateway) =================
+        const checkboxes = document.querySelectorAll('.term-check');
+        const startBtn = document.getElementById('start-btn');
+        const gateway = document.getElementById('terms-gateway');
+
+        checkboxes.forEach(box => {
+            box.addEventListener('change', () => {
+                const allChecked = Array.from(checkboxes).every(c => c.checked);
+                if (allChecked) {
+                    startBtn.disabled = false;
+                    startBtn.classList.remove('bg-gray-200', 'text-gray-500', 'cursor-not-allowed');
+                    startBtn.classList.add('bg-brand-orange', 'text-white', 'shadow-lg', 'hover:bg-orange-600', 'transform', 'hover:scale-[1.02]');
+                    startBtn.innerText = "الشروط متوفرة فيا 👉 ابدأ البحث عن شقتي";
+                } else {
+                    startBtn.disabled = true;
+                    startBtn.classList.add('bg-gray-200', 'text-gray-500', 'cursor-not-allowed');
+                    startBtn.classList.remove('bg-brand-orange', 'text-white', 'shadow-lg', 'hover:bg-orange-600', 'transform', 'hover:scale-[1.02]');
+                    startBtn.innerText = "علم (صح) على كل الشروط عشان تبدأ";
+                }
+            });
+        });
+
+        startBtn.addEventListener('click', () => {
+            gateway.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+            gateway.style.opacity = "0";
+            gateway.style.transform = "scale(0.95)";
+            setTimeout(() => {
+                gateway.style.display = 'none';
+                window.scrollTo(0, 0);
+            }, 400);
+        });
+
+        // ================= منطق نافذة الشرائح الديناميكية (Modal) =================
+        function openBracketModal() {
+            const modal = document.getElementById('bracket-modal');
+            const row1 = document.getElementById('row-bracket-1');
+            const futureWarn = document.getElementById('modal-future-warning');
+            
+            // تظليل الشريحة الأولى في حالة نظام 36 شهر
+            if (currentMode === 'future') {
+                row1.classList.add('opacity-40', 'bg-gray-200');
+                futureWarn.classList.remove('hidden');
+            } else {
+                row1.classList.remove('opacity-40', 'bg-gray-200');
+                futureWarn.classList.add('hidden');
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeBracketModal() {
+            const modal = document.getElementById('bracket-modal');
+            modal.classList.add('hidden');
+        }
+
         // ================= رقم الواتساب الرسمي =================
         const WHATSAPP_NUMBER = "201107833770"; 
 
@@ -159,7 +324,6 @@
 
         let currentMode = '';
 
-        // ================= قالب رسالة الواتساب للعملاء المرفوضين ديناميكياً =================
         function getIneligibleWhatsAppLink(gov, status, income) {
             const modeText = currentMode === 'immediate' ? 'الاستلام الفوري' : 'استلام خلال 36 شهر';
             const minIncome = 5000;
@@ -172,7 +336,6 @@
             const msg = `أهلاً شركة مسارك إلي الإسكان، أرغب في التقديم وهذه بياناتي:
 - النظام المطلوب: ${modeText}
 - محافظة محل الإقامة: ${gov}
-- السن: 
 - إجمالي الدخل الشهري: ${formatNumber(income)} ج.م (تنبيه: الدخل ${reason})
 - الحالة الاجتماعية: ${status}
 
@@ -180,33 +343,33 @@
             return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
         }
 
-        // ================= قالب رسالة الواتساب للعملاء المطابقين للشروط =================
         function getEligibleWhatsAppLink(projectName, govName, bracket, status, income) {
             const modeText = currentMode === 'immediate' ? 'الاستلام الفوري' : 'استلام خلال 36 شهر';
             const msg = `أهلاً شركة مسارك إلي الإسكان، أرغب في التقديم وهذه بياناتي:
 - النظام المطلوب: ${modeText} (${projectName} - شريحة ${bracket})
 - محافظة محل الإقامة: ${govName}
-- السن: 
 - إجمالي الدخل الشهري: ${formatNumber(income)} ج.م
 - الحالة الاجتماعية: ${status}`;
             return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
         }
 
-        // ================= دوال التحكم في الواجهة =================
         function selectMode(mode) {
             currentMode = mode;
             document.getElementById('landingPage').classList.add('hidden');
             document.getElementById('appPage').classList.remove('hidden');
             
             const badge = document.getElementById('modeBadge');
+            const futureHint = document.getElementById('future-hint');
             document.getElementById('resultArea').classList.add('hidden'); 
             
             if (mode === 'immediate') {
                 badge.innerText = 'نظام الاستلام الفوري';
                 badge.className = 'font-bold px-4 py-1.5 rounded-full text-sm inline-block shadow-sm bg-blue-100 brand-blue';
+                if(futureHint) futureHint.classList.add('hidden');
             } else {
                 badge.innerText = 'نظام الاستلام خلال 36 شهر';
                 badge.className = 'font-bold px-4 py-1.5 rounded-full text-sm inline-block shadow-sm bg-orange-100 brand-orange';
+                if(futureHint) futureHint.classList.remove('hidden');
             }
         }
 
@@ -232,7 +395,6 @@
             return text.toString().replace(/[أإآا]/g, 'ا').replace(/ة/g, 'ه').trim();
         }
 
-        // ================= دالة البحث الرئيسية =================
         function searchUnits() {
             const gov = document.getElementById("gov").value;
             const status = document.getElementById("status").value;
@@ -258,7 +420,6 @@
             cardsContainer.innerHTML = "";
 
             if (bracket === null) {
-                // رسالة عدم التطابق الجديدة والمحسنة ديناميكياً
                 const waLink = getIneligibleWhatsAppLink(gov, status, income);
                 alertBox.className = "p-5 rounded-2xl mb-6 text-center bg-orange-50 border border-orange-200 shadow-sm";
                 alertBox.innerHTML = `
@@ -267,6 +428,21 @@
                     <a href="${waLink}" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-xl transition shadow-md">
                         تواصل معنا لاكتشاف البدائل الحكومية
                     </a>
+                `;
+                return;
+            }
+
+            if (currentMode === 'future' && bracket === 1) {
+                alertBox.className = "p-5 rounded-2xl mb-6 text-center bg-red-50 border border-red-200 shadow-sm";
+                alertBox.innerHTML = `
+                    <div class="font-black text-xl text-red-700 mb-3">عفواً، هذا النظام غير متاح لشريحتك!</div>
+                    <div class="text-gray-700 mb-5 font-bold text-lg leading-relaxed">
+                        نظام الاستلام خلال 36 شهراً متاح فقط للشريحة الثانية والثالثة.<br>
+                        دخلك الحالي يضعك ضمن <strong class="text-brand-blue border-b-2 border-brand-orange pb-1">الشريحة الأولى</strong>.
+                    </div>
+                    <button onclick="selectMode('immediate'); searchUnits();" class="w-full md:w-auto inline-block bg-brand-blue hover:bg-[#0a1f3d] text-white font-bold py-3 px-8 rounded-xl transition shadow-md">
+                        حولني لنظام الاستلام الفوري (المتاح لي) 👉
+                    </button>
                 `;
                 return;
             }
@@ -280,12 +456,31 @@
                 return item["الشريحه"] == bracket && normalizedTarget.includes(normalizedGov);
             });
 
+            let reasonText = "";
+            let minVal, maxVal;
+            if (bracket === 1) {
+                minVal = 5000;
+                maxVal = status === "أعزب" ? 12000 : 16000;
+            } else if (bracket === 2) {
+                minVal = status === "أعزب" ? 12001 : 16001;
+                maxVal = status === "أعزب" ? 21000 : 28000;
+            } else if (bracket === 3) {
+                minVal = status === "أعزب" ? 21001 : 28001;
+                maxVal = status === "أعزب" ? 33000 : 44000;
+            }
+            reasonText = `تم تصنيفك في الشريحة (${bracket}) لأنك (${status}) ودخلك يقع بين (${formatNumber(minVal)} و ${formatNumber(maxVal)} ج.م).`;
+
             if (filtered.length === 0) {
                 alertBox.className = "p-5 rounded-2xl mb-6 font-bold text-center bg-yellow-50 text-yellow-800 border border-yellow-200 shadow-sm";
                 alertBox.innerHTML = `⚠️ أنت ضمن شريحة (${bracket}) ولكن لا يوجد مشاريع متاحة حالياً لمحافظتك في هذا النظام.`;
             } else {
-                alertBox.className = "p-5 rounded-2xl mb-6 font-bold text-center bg-green-50 text-green-800 border border-green-200 shadow-sm";
-                alertBox.innerHTML = `🎉 ممتاز! أنت مستوفي لشروط التقديم في شريحة (${bracket}) ووجدنا <strong>${filtered.length}</strong> مشروع متاح لك.`;
+                alertBox.className = "p-5 rounded-2xl mb-6 text-center bg-green-50 border border-green-200 shadow-sm";
+                alertBox.innerHTML = `
+                    <div class="text-xl md:text-2xl font-black text-green-800 mb-3">🎉 ممتاز! وجدنا <strong class="text-brand-orange">${filtered.length}</strong> مشروع متاح لك.</div>
+                    <div class="text-sm md:text-base bg-white inline-block px-4 py-2.5 rounded-xl border border-green-200 text-gray-700 shadow-sm">
+                        💡 <strong class="text-brand-blue">توضيح:</strong> <span class="font-bold text-gray-600">${reasonText}</span>
+                    </div>
+                `;
                 
                 if (currentMode === 'immediate') {
                     renderImmediateCards(filtered, bracket, status, income, cardsContainer);
@@ -346,7 +541,6 @@
                             <span class="font-black text-red-600 text-xl" dir="ltr">${formatNumber(item["جديه الحجز"])} <span class="text-xs font-bold">ج.م</span></span>
                         </div>
                     </div>
-                    <!-- زر الواتساب (CTA) -->
                     <div class="p-5 border-t border-gray-100 bg-white">
                         <a href="${waLink}" target="_blank" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl flex justify-center items-center gap-2 transition shadow-md">
                             تواصل معنا لتجهيز أوراق التقديم
@@ -397,7 +591,6 @@
                             <span class="font-black text-red-600 text-xl" dir="ltr">${formatNumber(item["جديه الحجز"])} <span class="text-xs font-bold">ج.م</span></span>
                         </div>
                     </div>
-                    <!-- زر الواتساب (CTA) -->
                     <div class="p-5 border-t border-gray-100 bg-white">
                         <a href="${waLink}" target="_blank" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl flex justify-center items-center gap-2 transition shadow-md">
                             تواصل معنا لتجهيز أوراق التقديم
