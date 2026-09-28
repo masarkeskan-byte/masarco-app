@@ -20,6 +20,15 @@
         .brand-orange { color: #f58220; }
         .bg-brand-orange { background-color: #f58220; }
         .border-brand-orange { border-color: #f58220; }
+        
+        /* تحسين السكرول للجدول على الموبايل */
+        .table-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .table-scroll::-webkit-scrollbar-thumb {
+            background-color: #f58220;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body class="text-gray-800 pb-10 flex flex-col min-h-screen relative">
@@ -192,68 +201,78 @@
     </footer>
 
     <!-- ================= نافذة شرح الشرائح (Modal) ================= -->
-    <div id="bracket-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[60] hidden flex items-center justify-center p-4 transition-opacity">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full overflow-hidden transform scale-95 transition-transform">
-            <div class="bg-[#0f2e5a] p-4 flex justify-between items-center">
-                <h3 class="text-white font-black text-xl">💡 الدليل المبسط لشرائح الدخل</h3>
+    <div id="bracket-modal" class="fixed inset-0 bg-black bg-opacity-60 z-[60] hidden flex items-center justify-center p-3 sm:p-4 transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl flex flex-col max-h-[90vh] overflow-hidden transform scale-95 transition-transform">
+            
+            <!-- الهيدر ثابت فوق -->
+            <div class="bg-[#0f2e5a] p-4 flex justify-between items-center flex-shrink-0">
+                <h3 class="text-white font-black text-lg md:text-xl">💡 الدليل المبسط لشرائح الدخل</h3>
                 <button onclick="closeBracketModal()" class="text-white hover:text-brand-orange font-bold text-3xl leading-none">&times;</button>
             </div>
-            <div class="p-6 overflow-x-auto">
+            
+            <!-- جسم النافذة (قابل للسكرول) -->
+            <div class="p-4 md:p-6 overflow-y-auto flex-grow">
                 <p class="text-gray-600 font-bold mb-4 text-sm md:text-base">وزارة الإسكان بتقسم المتقدمين لـ 3 شرائح بناءً على الحالة الاجتماعية والدخل الشهري، لتحديد نوع المشاريع المناسبة:</p>
-                <table class="w-full border-collapse border border-gray-200 text-center text-sm md:text-base mb-2">
-                    <thead>
-                        <tr class="bg-orange-100 brand-blue font-black">
-                            <th class="border border-gray-200 p-2 md:p-3" rowspan="2">الشريحة</th>
-                            <th class="border border-gray-200 p-2 md:p-3" rowspan="2">إجمالي قيمة الوحدة</th>
-                            <th class="border border-gray-200 p-2 md:p-3" colspan="2">الدخل الشهري للأعزب</th>
-                            <th class="border border-gray-200 p-2 md:p-3" colspan="2">الدخل الشهري للأسرة</th>
-                        </tr>
-                        <tr class="bg-orange-50 brand-blue font-bold">
-                            <th class="border border-gray-200 p-2">الحد الأدنى</th>
-                            <th class="border border-gray-200 p-2">الحد الأقصى</th>
-                            <th class="border border-gray-200 p-2">الحد الأدنى</th>
-                            <th class="border border-gray-200 p-2">الحد الأقصى</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="row-bracket-1" class="hover:bg-gray-50 transition-colors">
-                            <td class="border border-gray-200 p-2 font-black text-lg">1</td>
-                            <td class="border border-gray-200 p-2 font-bold">أقل من مليون جنية</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">5,000</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">12,000</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">5,000</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">16,000</td>
-                        </tr>
-                        <tr class="bg-blue-50 hover:bg-blue-100">
-                            <td class="border border-gray-200 p-2 font-black text-lg">2</td>
-                            <td class="border border-gray-200 p-2 font-bold">من مليون جنية حتى أقل من 2 مليون</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">12,001</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">21,000</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">16,001</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">28,000</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="border border-gray-200 p-2 font-black text-lg">3</td>
-                            <td class="border border-gray-200 p-2 font-bold">من 2 مليون جنية فأكثر</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">21,001</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">33,000</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">28,001</td>
-                            <td class="border border-gray-200 p-2 font-medium text-gray-700">44,000</td>
-                        </tr>
-                    </tbody>
-                </table>
                 
-                <!-- رسالة التحذير في المودال لنظام 36 شهر -->
-                <div id="modal-future-warning" class="hidden mt-3 p-3 bg-red-50 text-red-700 rounded-lg text-sm font-bold text-center border border-red-200">
+                <!-- إضافة حاوية للسكرول الأفقي للجدول -->
+                <div class="overflow-x-auto w-full pb-2 table-scroll border border-gray-200 rounded-lg">
+                    <table class="w-full min-w-[650px] border-collapse text-center text-sm md:text-base">
+                        <thead>
+                            <tr class="bg-orange-100 brand-blue font-black">
+                                <th class="border border-gray-200 p-2 md:p-3" rowspan="2">الشريحة</th>
+                                <th class="border border-gray-200 p-2 md:p-3" rowspan="2">إجمالي قيمة الوحدة</th>
+                                <th class="border border-gray-200 p-2 md:p-3" colspan="2">الدخل الشهري للأعزب</th>
+                                <th class="border border-gray-200 p-2 md:p-3" colspan="2">الدخل الشهري للأسرة</th>
+                            </tr>
+                            <tr class="bg-orange-50 brand-blue font-bold">
+                                <th class="border border-gray-200 p-2">الحد الأدنى</th>
+                                <th class="border border-gray-200 p-2">الحد الأقصى</th>
+                                <th class="border border-gray-200 p-2">الحد الأدنى</th>
+                                <th class="border border-gray-200 p-2">الحد الأقصى</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="row-bracket-1" class="hover:bg-gray-50 transition-colors">
+                                <td class="border border-gray-200 p-2 font-black text-lg">1</td>
+                                <td class="border border-gray-200 p-2 font-bold whitespace-nowrap">أقل من مليون جنية</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">5,000</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">12,000</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">5,000</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">16,000</td>
+                            </tr>
+                            <tr class="bg-blue-50 hover:bg-blue-100">
+                                <td class="border border-gray-200 p-2 font-black text-lg">2</td>
+                                <td class="border border-gray-200 p-2 font-bold">من مليون جنية حتى أقل من 2 مليون</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">12,001</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">21,000</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">16,001</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">28,000</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-gray-200 p-2 font-black text-lg">3</td>
+                                <td class="border border-gray-200 p-2 font-bold whitespace-nowrap">من 2 مليون جنية فأكثر</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">21,001</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">33,000</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">28,001</td>
+                                <td class="border border-gray-200 p-2 font-medium text-gray-700">44,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="modal-future-warning" class="hidden mt-4 p-3 bg-red-50 text-red-700 rounded-lg text-sm font-bold text-center border border-red-200">
                     ⚠️ تنبيه: الشريحة الأولى غير مدعومة في نظام الاستلام خلال 36 شهر.
                 </div>
 
                 <div class="mt-4 p-3 bg-gray-100 rounded-lg text-sm text-gray-600 font-bold text-center border border-gray-200">
+                    * اسحب الجدول يميناً ويساراً لرؤية كافة التفاصيل.<br>
                     * لا تقلق، نظام "مسارك" سيقوم بحساب شريحتك تلقائياً لضمان دقة النتائج.
                 </div>
             </div>
-            <div class="bg-gray-50 p-4 border-t border-gray-100 text-center">
-                <button onclick="closeBracketModal()" class="bg-brand-blue text-white font-bold py-2 px-8 rounded-xl hover:bg-[#0a1f3d] transition">فهمت، شكراً</button>
+            
+            <!-- الفوتر ثابت تحت عشان الزرار مايختفيش -->
+            <div class="bg-gray-50 p-4 border-t border-gray-200 text-center flex-shrink-0">
+                <button onclick="closeBracketModal()" class="w-full md:w-auto bg-brand-blue text-white font-black text-lg py-3 px-10 rounded-xl hover:bg-[#0a1f3d] transition shadow-md">فهمت، شكراً</button>
             </div>
         </div>
     </div>
@@ -307,11 +326,21 @@
             }
             
             modal.classList.remove('hidden');
+            
+            // تفعيل تأثير الانبثاق
+            setTimeout(() => {
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
         }
 
         function closeBracketModal() {
             const modal = document.getElementById('bracket-modal');
-            modal.classList.add('hidden');
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
         }
 
         // ================= رقم الواتساب الرسمي =================
